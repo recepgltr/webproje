@@ -1,13 +1,7 @@
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.book_list, name='book_list'),
-    path('book/<int:pk>/', views.book_detail, name='book_detail'),
-    path('book/create/', views.book_create, name='book_create'),
-    path('book/<int:pk>/delete/', views.book_delete, name='book_delete'),
-]
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('main.urls')),  # 'main' uygulamasının URL'lerini buraya ekledik
 ]
