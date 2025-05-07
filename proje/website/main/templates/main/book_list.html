@@ -1,0 +1,21 @@
+<!-- books/book_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kitap Listesi</title>
+</head>
+<body>
+    <h1>Kitaplar</h1>
+    <a href="{% url 'book_create' %}">Yeni Kitap Ekle</a>
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
+                - <a href="{% url 'book_delete' book.pk %}">Sil</a>
+            </li>
+        {% empty %}
+            <li>Hiç kitap yok.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

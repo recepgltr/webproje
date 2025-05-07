@@ -1,0 +1,14 @@
+<!-- books/book_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.title }} - Detay</title>
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <p><strong>Yazar:</strong> {{ book.author }}</p>
+    <p><strong>Açıklama:</strong> {{ book.description }}</p>
+    <a href="{% url 'book_list' %}">Geri dön</a>
+</body>
+</html>
+

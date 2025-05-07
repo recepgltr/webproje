@@ -1,0 +1,16 @@
+<!-- books/book_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yeni Kitap</title>
+</head>
+<body>
+    <h1>Yeni Kitap Ekle</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Kaydet</button>
+    </form>
+    <a href="{% url 'book_list' %}">Geri dön</a>
+</body>
+</html>
