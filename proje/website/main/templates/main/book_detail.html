@@ -1,14 +1,14 @@
-<!-- books/book_detail.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ book.title }} - Detay</title>
-</head>
-<body>
-    <h1>{{ book.title }}</h1>
-    <p><strong>Yazar:</strong> {{ book.author }}</p>
-    <p><strong>Açıklama:</strong> {{ book.description }}</p>
-    <a href="{% url 'book_list' %}">Geri dön</a>
-</body>
-</html>
+{% extends 'base.html' %}
 
+{% block title %}{{ book.title }} - Detay{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">{{ book.title }}</h2>
+            <p class="card-text"><strong>Yazar:</strong> {{ book.author }}</p>
+            <p class="card-text"><strong>Açıklama:</strong> {{ book.description }}</p>
+            <a href="{% url 'book_list' %}" class="btn btn-secondary mt-3">Geri dön</a>
+        </div>
+    </div>
+{% endblock %}
