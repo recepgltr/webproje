@@ -1,21 +1,25 @@
-<!-- books/book_list.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Kitap Listesi</title>
-</head>
-<body>
-    <h1>Kitaplar</h1>
-    <a href="{% url 'book_create' %}">Yeni Kitap Ekle</a>
-    <ul>
-        {% for book in books %}
-            <li>
-                <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
-                - <a href="{% url 'book_delete' book.pk %}">Sil</a>
-            </li>
-        {% empty %}
-            <li>Hiç kitap yok.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Kitap Listesi{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Kitaplar</h2>
+        <a href="{% url 'book_create' %}" class="btn btn-primary">Yeni Kitap Ekle</a>
+    </div>
+
+    {% if books %}
+        <ul class="list-group">
+            {% for book in books %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
+                    </div>
+                    <a href="{% url 'book_delete' book.pk %}" class="btn btn-sm btn-outline-danger">Sil</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="alert alert-info">Hiç kitap yok.</div>
+    {% endif %}
+{% endblock %}
