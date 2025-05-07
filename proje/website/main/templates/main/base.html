@@ -1,1 +1,25 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Kitap Uygulaması{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'book_list' %}">Anasayfa</a> |
+            <a href="{% url 'book_create' %}">Yeni Kitap Ekle</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Kitap Uygulaması</p>
+    </footer>
+</body>
+</html>
 
