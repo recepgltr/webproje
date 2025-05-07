@@ -1,16 +1,17 @@
-<!-- books/book_form.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Yeni Kitap</title>
-</head>
-<body>
-    <h1>Yeni Kitap Ekle</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Kaydet</button>
-    </form>
-    <a href="{% url 'book_list' %}">Geri dön</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Yeni Kitap Ekle{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Yeni Kitap Ekle</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success mt-2">Kaydet</button>
+                <a href="{% url 'book_list' %}" class="btn btn-secondary mt-2">Geri dön</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
