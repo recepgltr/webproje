@@ -1,15 +1,14 @@
-<!-- books/book_confirm_delete.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Kitap Sil</title>
-</head>
-<body>
-    <h1>{{ book.title }} kitabını silmek istediğinize emin misiniz?</h1>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Evet, Sil</button>
-    </form>
-    <a href="{% url 'book_list' %}">Hayır, geri dön</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Kitap Sil{% endblock %}
+
+{% block content %}
+    <div class="alert alert-warning">
+        <h2>{{ book.title }} kitabını silmek istediğinize emin misiniz?</h2>
+        <form method="post" class="mt-3">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Evet, Sil</button>
+            <a href="{% url 'book_list' %}" class="btn btn-secondary">Hayır, geri dön</a>
+        </form>
+    </div>
+{% endblock %}
