@@ -1,11 +1,14 @@
 from django.urls import path
-from django.contrib import admin  # ✅ doğru olan bu
-from . import views
+from .views import (
+    BookListView,
+    BookDetailView,
+    BookCreateView,
+    BookDeleteView,
+)
 
 urlpatterns = [
-    path('', views.book_list, name='book_list'),
-    path('<int:pk>/', views.book_detail, name='book_detail'),
-    path('create/', views.book_create, name='book_create'),
-    path('<int:pk>/delete/', views.book_delete, name='book_delete'),
+    path('', BookListView.as_view(), name='book_list'),
+    path('<int:pk>/', BookDetailView.as_view(), name='book_detail'),
+    path('create/', BookCreateView.as_view(), name='book_create'),
+    path('<int:pk>/delete/', BookDeleteView.as_view(), name='book_delete'),
 ]
-

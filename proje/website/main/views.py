@@ -1,31 +1,30 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Book
-from .forms import BookForm  
+from .forms import BookForm
+
+
 # Kitapları listele
-def book_list(request):
-    books = Book.objects.all()
-    return render(request, 'main/book_list.html', {'books': books})
+class BookListView(ListView):
+    model = Book
+    template_name = 'main/book_list.html'
+    context_object_name = 'books'
 
 # Kitap detaylarını göster
-def book_detail(request, pk):
-    book = get_object_or_404(Book, pk=pk)
-    return render(request, 'main/book_detail.html', {'book': book})
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'main/book_detail.html'
+    context_object_name = 'book'
 
 # Yeni kitap ekle
-def book_create(request):
-    if request.method == 'POST':
-        form = BookForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('book_list')
-    else:
-        form = BookForm()
-    return render(request, 'main/book_form.html', {'form': form})
+class BookCreateView(CreateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'main/book_form.html'
+    success_url = reverse_lazy('book_list')
 
 # Kitabı sil
-def book_delete(request, pk):
-    book = get_object_or_404(Book, pk=pk)
-    if request.method == 'POST':
-        book.delete()
-        return redirect('book_list')
-    return render(request, 'main/book_confirm_delete.html', {'book': book})
+class BookDeleteView(DeleteView):
+    model = Book
+    template_name = 'main/book_confirm_delete.html'
+    success_url = reverse_lazy('book_list')
